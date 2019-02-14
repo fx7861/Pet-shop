@@ -8,8 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
+
     /**
-     * @Route("/" name="page_home")
+     * @Route("/", name="page_home")
      */
     public function home()
     {
