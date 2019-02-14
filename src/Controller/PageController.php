@@ -19,7 +19,7 @@ class PageController extends AbstractController
 
     public function subCategory()
     {
-
+        return $this->render('page/home.html.twig');
     }
 
 }
