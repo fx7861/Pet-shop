@@ -23,11 +23,11 @@ class PageController extends AbstractController
     }
     
     /**
-     * @Route("/my-category-is-amazing")
+     * @Route("/category")
      */
     public function category()
     {
-
+        return $this->render('page/category.html.twig');
     }
 
 }
