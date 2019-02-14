@@ -17,12 +17,9 @@ class PageController extends AbstractController
         return $this->render('page/home.html.twig');
     }
 
-    /**
-     * @Route("/subcategory", name="page_subcategory")
-    */
     public function subCategory()
     {
-        return $this->render('page/sub_category.html.twig');
+        return $this->render('page/home.html.twig');
     }
 
 }
