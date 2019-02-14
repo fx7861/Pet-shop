@@ -21,5 +21,13 @@ class PageController extends AbstractController
     {
         return $this->render('page/home.html.twig');
     }
+    
+    /**
+     * @Route("/my-category-is-amazing")
+     */
+    public function category()
+    {
+
+    }
 
 }
