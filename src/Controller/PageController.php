@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Entity\SubCategory;
 use App\Entity\Category;
@@ -18,7 +18,6 @@ class PageController extends AbstractController
      */
     public function home()
     {
-
         return $this->render('page/home.html.twig');
     }
 
@@ -29,21 +28,22 @@ class PageController extends AbstractController
      */
     public function subCategory($slug)
     {
-
         $subCategory = $this->getDoctrine()
                         ->getRepository(SubCategory::class)
                         ->findOneBy(['slug' => $slug]);
-        $products = $subCategory->getProducts();
 
+        //$products = $subCategory->getProducts();
 
         return $this->render('page/sub_category.html.twig', [
             'subCategory' => $subCategory,
-            'products' => $products
+            //'products' => $products
         ]);
     }
 
     /**
      * @Route("/{slug<[a-zA-Z0-9\-_\/]+>}", name="page_category")
+     * @param $slug
+     * @return Response
      */
     public function category($slug)
     {
@@ -69,4 +69,14 @@ class PageController extends AbstractController
 
         return $this->render('page/product.html.twig');
     }
+
+    public function navbar(CategoryRepository $repository)
+    {
+        $categories = $repository->findAll();
+
+        return $this->render('components/_navbar.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
 }

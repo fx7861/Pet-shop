@@ -22,8 +22,8 @@
 {% endblock %}
 
 {% block body %}
-    {#{{ render(controller('App\\Controller\\FrontController::nav')) }}#}
-    {% include 'components/_navbar.html.twig' %}
+
+    {{ render(controller('App\\Controller\\PageController::navbar')) }}
 
     {% block content '' %}
 
@@ -43,5 +43,4 @@
     <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/price-range.js') }}"></script>
-
 {% endblock %}
