@@ -12,7 +12,7 @@ class PageController extends AbstractController
 {
 
     /**
-     * @Route("/", name=" ")
+     * @Route("/", name="page_home")
      */
     public function home()
     {
@@ -35,7 +35,7 @@ class PageController extends AbstractController
         return $this->render('page/category.html.twig');
     }
 
-    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategorie<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}")
+    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategorie<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
     /**
      * @Route("/produit")
      */
