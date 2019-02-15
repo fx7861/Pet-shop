@@ -35,7 +35,6 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{ path('page_home') }}" class="active">Accueil</a></li>
-
                             {% for categorie in categories %}
                                 <li class="dropdown"><a href="{{ path('page_category', {
                                         'slug': categorie.slug
