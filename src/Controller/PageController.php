@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,7 +12,7 @@ class PageController extends AbstractController
 {
 
     /**
-     * @Route("/", name="page_home")
+     * @Route("/", name=" ")
      */
     public function home()
     {
@@ -33,4 +35,14 @@ class PageController extends AbstractController
         return $this->render('page/category.html.twig');
     }
 
+    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategorie<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}")
+    /**
+     * @Route("/produit")
+     */
+    public function product(ProductRepository $repository)
+    {
+        //$product = $repository->find($id);
+
+        return $this->render('page/product.html.twig');
+    }
 }
