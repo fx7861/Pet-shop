@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 use App\Entity\SubCategory;
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +18,7 @@ class PageController extends AbstractController
      */
     public function home()
     {
+
         return $this->render('page/home.html.twig');
     }
 
@@ -27,6 +28,11 @@ class PageController extends AbstractController
      * @return Response
      */
     public function subCategory($slug)
+
+    /**
+     * @Route("/subcategory", name="page_subcategory")
+     */
+    public function subCategory()
     {
 
         $subCategory = $this->getDoctrine()
@@ -40,13 +46,22 @@ class PageController extends AbstractController
             'products' => $products
         ]);
     }
-    
+
     /**
-     * @Route("/category")
+     * @Route("/{slug<[a-zA-Z0-9\-_\/]+>}", name="page_category")
      */
-    public function category()
+    public function category($slug)
     {
-        return $this->render('page/category.html.twig');
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(['slug' => $slug]);
+
+        $subCategories = $category->getSubCategories();
+
+        return $this->render('page/category.html.twig',[
+                 'category' => $category,
+                 'subCategory' => $subCategories
+            ]);
     }
 
     // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategorie<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
