@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <h1 class="title title-h1">Jouets</h1>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="{{ asset('images/ultima.jpg') }}" alt="" />
+                                <h2>56 €</h2>
+                                <p>Croquette pour chien XXL</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter un panier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="{{ asset('images/ultima.jpg') }}" alt="" />
+                                <h2>56 €</h2>
+                                <p>Croquette pour chien adulte</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter un panier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="{{ asset('images/ultima.jpg') }}" alt="" />
+                                <h2>56 €</h2>
+                                <p>Croquette pour bébé chien</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter un panier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="{{ asset('images/ultima.jpg') }}" alt="" />
+                                <h2>56 €</h2>
+                                <p>Croquette pour chat</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter un panier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
