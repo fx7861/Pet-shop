@@ -28,11 +28,6 @@ class PageController extends AbstractController
      * @return Response
      */
     public function subCategory($slug)
-
-    /**
-     * @Route("/subcategory", name="page_subcategory")
-     */
-    public function subCategory()
     {
 
         $subCategory = $this->getDoctrine()
