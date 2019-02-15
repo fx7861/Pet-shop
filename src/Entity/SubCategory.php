@@ -38,6 +38,12 @@ class SubCategory
         $this->products = new ArrayCollection();
     }
 
+    /** 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subCategories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,6 +100,16 @@ class SubCategory
                 $product->setSubCategory(null);
             }
         }
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
