@@ -11,6 +11,6 @@ class AdminController
      */
     public function listProduct()
     {
-
+        // liste de produit
     }
 }
