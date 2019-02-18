@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 
-class AdminController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AdminController extends AbstractController
 {
-    
+
     /**
      * @Route("/admin/product", name="admin_product")
      */
