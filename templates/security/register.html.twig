@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Inscription
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function verif(evt) {
+            var keyCode = evt.which ? evt.which : evt.keyCode;
+            var accept = '0123456789';
+            if (accept.indexOf(String.fromCharCode(keyCode)) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="title-h1">Inscription</h1>
+        {{ form(formRegister) }}
+    </div>
+
+{% endblock %}
