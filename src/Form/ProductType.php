@@ -27,12 +27,18 @@ class ProductType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => true,
-                'label' => 'Description'
+                'label' => 'Description',
+                'attr' => [
+                    'class' => 'ckeditor'
+                ]
 
             ])
             ->add('photo', FileType::class, [
                 'required' => true,
-                'label' => 'Photo'
+                'label' => 'Photo',
+                'attr' => [
+                    'class' => 'dropify'
+                ]
             ])
             ->add('price', NumberType::class, [
                 'required' => true,
@@ -65,4 +71,11 @@ class ProductType extends AbstractType
             'data_class' => Product::class,
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'form';
+    }
+
+
 }
