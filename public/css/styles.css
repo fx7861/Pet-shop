@@ -28,3 +28,18 @@
     height: 0;
     z-index: -2;
 }
+
+.btn-form {
+    background: #FE980F;
+    border: 0 none;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 10px;
+
+}
+
+#form {
+    margin-bottom: 30px;
+    margin-top: 0px;
+}

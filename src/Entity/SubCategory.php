@@ -102,12 +102,12 @@ class SubCategory
         }
     }
 
-    public function getCategory(): ?Category
+    public function getCategory(): Category
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
