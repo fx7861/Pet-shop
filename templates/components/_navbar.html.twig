@@ -38,13 +38,13 @@
                             {% for categorie in categories %}
                                 <li class="dropdown"><a href="{{ path('page_category', {
                                         'slug': categorie.slug
-                                    }) }}">{{ categorie.name }}<i class="fa fa-angle-down"></i></a>
+                                    }) }}">{{ categorie.name | capitalize }}<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         {% for sub in categorie.subCategories %}
                                             <li><a href="{{ path('page_subcategory', {
                                                     'category': categorie.slug,
                                                     'slug': sub.slug
-                                                }) }}">{{ sub.name }}</a></li>
+                                                }) }}">{{ sub.name | capitalize }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>

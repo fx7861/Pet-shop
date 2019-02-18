@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,6 +15,10 @@ class AdminController extends AbstractController
      */
     public function listProduct()
     {
-        // liste de produit
+        $form = $this->createForm(ProductType::class);
+
+        return $this->render('admin/listProduct.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

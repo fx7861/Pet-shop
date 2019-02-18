@@ -1,0 +1,17 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}
+    Administration - Liste des Produits
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <h1 class="title-h1">Ajouter un article</h1>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
