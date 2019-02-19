@@ -10,18 +10,25 @@
             <h1 class="title title-h1">{{ subCategory.name | capitalize }}</h1>
             <div class="row">
                 {% for product in products %}
-                <div class="col-sm-3">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="{{ asset('images/ultima.jpg') }}" alt="" />
-                                <h2>{{ product.price }} €</h2>
-                                <p>{{ product.description }}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter un panier</a>
+                    <div class="col-sm-3">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="{{ path('page_product', {
+                                        'category': subCategory.category.slug,
+                                        'subCategory': subCategory.slug,
+                                        'slug': product.slug,
+                                        'id': product.id
+                                    }) }}">
+                                        <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="" />
+                                        <h4>{{ product.title }}</h4>
+                                    </a>
+                                    <h2>{{ product.price }} €</h2>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
