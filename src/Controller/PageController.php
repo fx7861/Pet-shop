@@ -59,9 +59,9 @@ class PageController extends AbstractController
             ]);
     }
 
-    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategorie<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
+    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
     /**
-     * @Route("/produit")
+     * @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
      */
     public function product(ProductRepository $repository)
     {
