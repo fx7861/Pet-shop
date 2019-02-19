@@ -34,7 +34,23 @@
         <div class="container">
             <h1 class="title-h1">Ajouter un article</h1>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.photo) }}
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_row(form.subCategory) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_row(form.price) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">{{ form_row(form.marque) }}</div>
+                    <div class="col-sm-3">{{ form_row(form.color) }}</div>
+                    <div class="col-sm-3">{{ form_row(form.composition) }}</div>
+                    <div class="col-sm-3">{{ form_row(form.dimension) }}</div>
+                </div>
             {{ form_end(form) }}
         </div>
     </section>

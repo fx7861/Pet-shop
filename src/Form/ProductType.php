@@ -4,10 +4,8 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Entity\SubCategory;
-use App\Repository\SubCategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,6 +16,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,7 +33,6 @@ class ProductType extends AbstractType
                 'attr' => [
                     'class' => 'ckeditor'
                 ]
-
             ])
             ->add('photo', FileType::class, [
                 'required' => true,
@@ -44,10 +45,6 @@ class ProductType extends AbstractType
                 'required' => true,
                 'label' => 'Prix'
             ])
-            ->add('features', CollectionType::class, [
-                'required' => true,
-                'label' => 'Caractéristiques'
-            ])
             ->add('subCategory', EntityType::class, [
                 'label' => 'Categorie',
                 'class' => SubCategory::class,
@@ -55,6 +52,22 @@ class ProductType extends AbstractType
                 'group_by' => function (SubCategory $sb) {
                     return $sb->getCategory()->getName();
                 }
+            ])
+            ->add('marque', TextType::class, [
+                'required' => false,
+                'label' => 'Marque'
+            ])
+            ->add('color', TextType::class, [
+                'required' => false,
+                'label' => 'Couleur'
+            ])
+            ->add('composition', TextType::class, [
+                'required' => false,
+                'label' => 'Composition'
+            ])
+            ->add('dimension', TextType::class, [
+                'required' => false,
+                'label' => 'Dimension'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter un produit',

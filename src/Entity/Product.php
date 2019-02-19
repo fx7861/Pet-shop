@@ -27,7 +27,7 @@ class Product
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $photo;
 
@@ -35,11 +35,6 @@ class Product
      * @ORM\Column(type="float")
      */
     private $price;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $features = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -51,6 +46,26 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $subCategory;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $marque;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $composition;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $dimension;
 
     public function getId(): ?int
     {
@@ -81,12 +96,12 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto($photo): self
     {
         $this->photo = $photo;
 
@@ -101,18 +116,6 @@ class Product
     public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getFeatures(): ?array
-    {
-        return $this->features;
-    }
-
-    public function setFeatures(array $features): self
-    {
-        $this->features = $features;
 
         return $this;
     }
@@ -134,9 +137,57 @@ class Product
         return $this->subCategory;
     }
 
-    public function setSubCategory(?SubCategory $subCategory): self
+    public function setSubCategory(SubCategory $subCategory): self
     {
         $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    public function getMarque(): ?string
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?string $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getComposition(): ?string
+    {
+        return $this->composition;
+    }
+
+    public function setComposition(?string $composition): self
+    {
+        $this->composition = $composition;
+
+        return $this;
+    }
+
+    public function getDimension(): ?string
+    {
+        return $this->dimension;
+    }
+
+    public function setDimension(?string $dimension): self
+    {
+        $this->dimension = $dimension;
 
         return $this;
     }

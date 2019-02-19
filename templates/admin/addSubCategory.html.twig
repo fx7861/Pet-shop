@@ -1,0 +1,18 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}
+    Administration - Ajouter une sous-catégorie
+{% endblock %}
+
+{% block content %}
+
+    <section class="my-3">
+        <div class="container">
+            <h1 class="title-h1">Ajouter une sous-catégorie</h1>
+            {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.category) }}
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
