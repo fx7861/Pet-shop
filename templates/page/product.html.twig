@@ -1,7 +1,7 @@
 {%  extends 'layout.html.twig' %}
 
 {% block title %}
-    titre du produit
+    {{ product.name }}
 {% endblock %}
 
 {% block content %}
@@ -11,15 +11,15 @@
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="{{ asset('images/ultima.jpg') }}" alt="" />
+                            <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="{{ product.title }}" />
                         </div>
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
-                            <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                            <img src="{{ asset('images/product-details/new.jpg') }}" class="newarrival" alt="" />
                             <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
                             <p>Rèf: xxx-id</p>
-                            <img src="images/product-details/rating.png" alt="" />
+                            <img src="{{ asset('images/product-details/rating.png') }}" alt="" />
                             <span>
 									<span>59 €</span>
 									<label>Quantity:</label>
@@ -37,7 +37,7 @@
                                 tincidunt felis dui vitae lorem. Etiam leo. Nulla et  justo.
                                 <a href="#details">Voir la description complète</a>
                             </p>
-                            <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                            <a href=""><img src="{{ asset('images/photo/') }}" class="share img-responsive"  alt="" /></a>
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->

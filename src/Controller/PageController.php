@@ -53,21 +53,25 @@ class PageController extends AbstractController
 
         $subCategories = $category->getSubCategories();
 
-        return $this->render('page/category.html.twig',[
+        return $this->render('page/category.html.twig', [
                  'category' => $category,
                  'subCategory' => $subCategories
             ]);
     }
 
-    // @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
     /**
      * @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
+     * @param ProductRepository $repository
+     * @param $id
+     * @return Response
      */
-    public function product(ProductRepository $repository)
+    public function product(ProductRepository $repository, $id)
     {
-        //$product = $repository->find($id);
+        $product = $repository->find($id);
 
-        return $this->render('page/product.html.twig');
+        return $this->render('page/product.html.twig', [
+            'product' => $product
+        ]);
     }
 
     public function navbar(CategoryRepository $repository)
