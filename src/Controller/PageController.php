@@ -26,15 +26,21 @@ class PageController extends AbstractController
      * @param $slug
      * @return Response
      */
-    public function subCategory($slug)
+    public function subCategory($category, $slug)
     {
+        $cat = $this->getDoctrine()
+                    ->getRepository(Category::class)
+                    ->findOneBy(['slug' => $category->getId(), ]);
+
+        // erreur a modif
         $subCategory = $this->getDoctrine()
                         ->getRepository(SubCategory::class)
-                        ->findOneBy(['slug' => $slug]);
+                        ->findOneBy(['slug' => $slug, 'category_id' => $category->getId()]);
 
         $products = $subCategory->getProducts();
 
         return $this->render('page/sub_category.html.twig', [
+            'category' => $category,
             'subCategory' => $subCategory,
             'products' => $products
         ]);
@@ -60,7 +66,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/{categorie<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
+     * @Route("/{category<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
      * @param ProductRepository $repository
      * @param $id
      * @return Response
