@@ -97,13 +97,21 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $photo */
+            $photo = $category->getPhoto();
+
+            $fileName = $this->slugify($category->getName()) . '.' . $photo->guessExtension();
+            $photo->move($this->getParameter('category_assets_dir'), $fileName);
+
+            $category->setPhoto($fileName);
+
             $category->setSlug($this->slugify($category->getName()));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('admin_add_subCategory');
+            return $this->redirectToRoute('admin_add_subcategory');
         }
 
         return $this->render('admin/addSubCategory.html.twig', [

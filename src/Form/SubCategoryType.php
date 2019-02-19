@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\SubCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,6 +25,13 @@ class SubCategoryType extends AbstractType
                 'label' => 'Categorie',
                 'class' => Category::class,
                 'choice_label' => 'name'
+            ])
+            ->add('photo', FileType::class, [
+                'required' => true,
+                'label' => 'Photo',
+                'attr' => [
+                    'class' => 'dropify'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter une sous-categorie',

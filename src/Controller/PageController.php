@@ -22,6 +22,22 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/{category<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}",
+     *     name="page_product")
+     * @param ProductRepository $repository
+     * @param $id
+     * @return Response
+     */
+    public function product(ProductRepository $repository, $id)
+    {
+        $product = $repository->find($id);
+
+        return $this->render('page/product.html.twig', [
+            'product' => $product
+        ]);
+    }
+
+    /**
      * @Route("/{category<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}", name="page_subcategory")
      * @param $slug
      * @return Response
@@ -30,17 +46,15 @@ class PageController extends AbstractController
     {
         $cat = $this->getDoctrine()
                     ->getRepository(Category::class)
-                    ->findOneBy(['slug' => $category->getId(), ]);
+                    ->findOneBy(['slug' => $category ]);
 
-        // erreur a modif
         $subCategory = $this->getDoctrine()
                         ->getRepository(SubCategory::class)
-                        ->findOneBy(['slug' => $slug, 'category_id' => $category->getId()]);
+                        ->findOneBy(['slug' => $slug, 'category' => $cat]);
 
         $products = $subCategory->getProducts();
 
         return $this->render('page/sub_category.html.twig', [
-            'category' => $category,
             'subCategory' => $subCategory,
             'products' => $products
         ]);
@@ -63,21 +77,6 @@ class PageController extends AbstractController
                  'category' => $category,
                  'subCategory' => $subCategories
             ]);
-    }
-
-    /**
-     * @Route("/{category<[a-zA-Z0-9\-_\/]+>}/{subCategory<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}-{id<\d+>}", name="page_product")
-     * @param ProductRepository $repository
-     * @param $id
-     * @return Response
-     */
-    public function product(ProductRepository $repository, $id)
-    {
-        $product = $repository->find($id);
-
-        return $this->render('page/product.html.twig', [
-            'product' => $product
-        ]);
     }
 
     public function navbar(CategoryRepository $repository)

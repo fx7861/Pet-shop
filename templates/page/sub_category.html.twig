@@ -6,6 +6,7 @@
 
 {% block content %}
     <section>
+        <div class="container">
             <h1 class="title title-h1">{{ subCategory.name | capitalize }}</h1>
             <div class="row">
                 {% for product in products %}
@@ -14,8 +15,8 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <a href="{{ path('page_product', {
-                                        'category': category.slug,
-                                        'subCategory': subCategory.slug,
+                                        'category': subCategory.category.slug,
+                                        'subCategorycls': subCategory.slug,
                                         'slug': product.slug,
                                         'id': product.id
                                     }) }}">
