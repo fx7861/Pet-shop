@@ -1,7 +1,7 @@
-{%  extends 'layout.html.twig' %}
+{%  extends 'layout.admin.html.twig' %}
 
 {% block title %}
-    Administration - Liste des Produits
+    Administration - Ajoouter un Produit
 {% endblock %}
 
 {% block stylesheets %}
@@ -30,31 +30,44 @@
 {% endblock %}
 
 {% block content %}
-
-    <section class="my-3">
-        <div class="container">
-            <h1 class="title-h1">Ajouter un article</h1>
-            {{ form_start(form) }}
-                {{ form_row(form.title) }}
-                {{ form_row(form.description) }}
-                {{ form_row(form.photo) }}
-                <div class="row">
-                    <div class="col-sm-6">
-                        {{ form_row(form.subCategory) }}
-                    </div>
-                    <div class="col-sm-6">
-                        {{ form_row(form.price) }}
+    <div class="wrapper ">
+        {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <h1 class="title-h1">Ajouter un produit</h1>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">{{ form_row(form.marque) }}</div>
-                    <div class="col-sm-3">{{ form_row(form.color) }}</div>
-                    <div class="col-sm-3">{{ form_row(form.composition) }}</div>
-                    <div class="col-sm-3">{{ form_row(form.dimension) }}</div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header mb-50"></div>
+            <section class="my-3">
+                <div class="container">
+                    {{ form_start(form) }}
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.photo) }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{ form_row(form.subCategory) }}
+                            </div>
+                            <div class="col-sm-6">
+                                {{ form_row(form.price) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">{{ form_row(form.marque) }}</div>
+                            <div class="col-sm-3">{{ form_row(form.color) }}</div>
+                            <div class="col-sm-3">{{ form_row(form.composition) }}</div>
+                            <div class="col-sm-3">{{ form_row(form.dimension) }}</div>
+                        </div>
+                    {{ form_end(form) }}
                 </div>
-            {{ form_end(form) }}
+            </section>
         </div>
-    </section>
+    </div>
 {% endblock %}
 
 

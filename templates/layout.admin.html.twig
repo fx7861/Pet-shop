@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/admin/now-ui-dashboard.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/admin-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    {#{{ render(controller('App\\Controller\\PageController::navbar')) }}#}
+    {% block content '' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/admin/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('js/admin/chartjs.min.js') }}"></script>
+    <script src="{{ asset('js/admin/bootstrap-notify.js') }}"></script>
+    <script src="{{ asset('js/admin/now-ui-dashboard.min.js') }}"></script>
+    <script src="{{ asset('js/admin/admin-dashboard.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            demo.initDashboardPageCharts();
+        });
+    </script>
+{% endblock %}

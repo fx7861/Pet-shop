@@ -1,4 +1,4 @@
-{%  extends 'layout.html.twig' %}
+{%  extends 'layout.admin.html.twig' %}
 
 {% block title %}
     Administration - Ajouter une sous-catégorie
@@ -27,14 +27,27 @@
 {% endblock %}
 
 {% block content %}
-
-    <section class="my-3">
-        <div class="container">
-            <h1 class="title-h1">Ajouter une sous-catégorie</h1>
-            {{ form_start(form) }}
-                {{ form_row(form.name) }}
-                {{ form_row(form.category) }}
-            {{ form_end(form) }}
+    <div class="wrapper ">
+        {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <h1 class="title-h1">Ajouter une sous-catégorie</h1>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header mb-50"></div>
+            <section class="my-3">
+                <div class="container">
+                    {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.category) }}
+                    {{ form_end(form) }}
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 {% endblock %}

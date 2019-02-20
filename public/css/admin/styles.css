@@ -1,0 +1,11 @@
+.title-h1 {
+    font-size: 1.2em;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+input, select {
+    background-color: white !important;
+}

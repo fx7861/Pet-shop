@@ -1,0 +1,38 @@
+<div class="sidebar" data-color="orange">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+  -->
+    <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal text-center">
+            Pet-shop
+        </a>
+    </div>
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+            <li class="active">
+                <a href="{{ path('admin_dashboard') }}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_add_product') }}">
+                    <i class="fab fa-product-hunt"></i>
+                    <p>Ajouter un produit</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_add_category') }}">
+                    <i class="fas fa-cat"></i>
+                    <p>Ajouter une categorie</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_add_subcategory') }}">
+                    <i class="fas fa-dog"></i>
+                    <p>Ajouter une sous-categorie</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

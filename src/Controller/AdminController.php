@@ -20,6 +20,14 @@ class AdminController extends AbstractController
     use HelperTrait;
 
     /**
+     * @Route("/admin/dashboard", name="admin_dashboard")
+     */
+    public function dashboard()
+    {
+        return $this->render('admin/dashboard/dashboard.html.twig');
+    }
+
+    /**
      * @Route("/admin/product/add", name="admin_add_product")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
