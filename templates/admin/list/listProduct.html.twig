@@ -1,0 +1,63 @@
+{%  extends 'layout.admin.html.twig' %}
+
+{% block title %}
+    Dashboard - Pet-shop
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
+        <section class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent bg-primary header-pet">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler btn-toggler-dashboad">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <h1 class="title-h1">Dashboard</h1>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <section>
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Sous-categorie</th>
+                            <th scope="col">Marque</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Composition</th>
+                            <th scope="col">Dimension</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in products %}
+                                <tr>
+                                    <td scope="col">{{ p.id }}</td>
+                                    <td scope="col">{{ p.title }}</td>
+                                    <td scope="col">{{ p.description }}</td>
+                                    <td scope="col">{{ p.photo }}</td>
+                                    <td scope="col">{{ p.price }}</td>
+                                    <td scope="col">{{ p.subCategory.name }}</td>
+                                    <td scope="col">{{ p.marque }}</td>
+                                    <td scope="col">{{ p.color }}</td>
+                                    <td scope="col">{{ p.composition }}</td>
+                                    <td scope="col">{{ p.dimension }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

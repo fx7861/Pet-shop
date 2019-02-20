@@ -1,0 +1,51 @@
+{%  extends 'layout.admin.html.twig' %}
+
+{% block title %}
+    Dashboard - Pet-shop
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper ">
+        {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent bg-primary header-pet">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler btn-toggler-dashboad">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <h1 class="title-h1">Dashboard</h1>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <section>
+                <div class="container">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Categorie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in subCategories %}
+                                <tr>
+                                    <td scope="col">{{ s.id }}</td>
+                                    <td scope="col">{{ s.name }}</td>
+                                    <td scope="col">{{ s.photo }}</td>
+                                    <td scope="col">{{ s.category.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

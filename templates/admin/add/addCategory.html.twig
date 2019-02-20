@@ -8,8 +8,13 @@
     <div class="wrapper ">
         {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
         <div class="main-panel" id="main-panel">
-        <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent bg-primary header-pet">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler btn-toggler-dashboad">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <h1 class="title-h1">Ajouter une catégorie</h1>
@@ -17,8 +22,7 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="panel-header mb-50"></div>
-            <section class="my-3">
+            <section>
                 <div class="container">
                     {{ form_start(form) }}
                         {{ form_row(form.name) }}

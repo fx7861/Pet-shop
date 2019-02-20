@@ -22,13 +22,26 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
-                <div class="row">
-
-
-
+            <section>
+                <div class="container">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nom</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in categories %}
+                                <tr>
+                                    <td scope="col">{{ c.id }}</td>
+                                    <td scope="col">{{ c.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 {% endblock %}

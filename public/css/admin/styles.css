@@ -2,10 +2,35 @@
     font-size: 1.2em;
 }
 
-.mb-50 {
-    margin-bottom: 50px;
-}
-
 input, select {
     background-color: white !important;
+}
+
+.header-pet {
+    background: linear-gradient(90deg,#0c2646 0,#204065 60%,#2a5788);
+    border-radius: 0px;
+    margin-bottom: 50px !important;
+}
+
+.nav-pet:after {
+    content: "";
+    margin-left: 5%;
+    margin-top: 20px;
+    height: 1px;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.title-admin-pet {
+    color: white;
+    text-decoration: underline;
+}
+
+.btn-toggler-dashboad {
+    background: none;
+    border: none;
+}
+
+.btn-toggler-dashboad i {
+    font-size: 2em;
 }

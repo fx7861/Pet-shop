@@ -12,11 +12,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LoginType extends AbstractType
 {
-    /**
-     * @Route('/connexion', name="page_connexion")
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
+
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

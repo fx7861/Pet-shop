@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-
+use App\Controller\HelperTrait;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\SubCategory;
@@ -14,18 +14,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends AbstractController
+
+class AdminAddController extends AbstractController
 {
 
     use HelperTrait;
-
-    /**
-     * @Route("/admin/dashboard", name="admin_dashboard")
-     */
-    public function dashboard()
-    {
-        return $this->render('admin/dashboard/dashboard.html.twig');
-    }
 
     /**
      * @Route("/admin/product/add", name="admin_add_product")
@@ -44,7 +37,7 @@ class AdminController extends AbstractController
             /** @var UploadedFile $photo */
             $photo = $product->getPhoto();
 
-            $fileName = $this->slugify($product->getTitle()) . '.' . $photo->guessExtension();
+            $fileName = $this->slugify($product->getTitle()) . '-' . $this->generateUniqueFileName() . '.' . $photo->guessExtension();
             $photo->move($this->getParameter('products_assets_dir'), $fileName);
 
             $product->setPhoto($fileName);
@@ -58,7 +51,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_add_product');
         }
 
-        return $this->render('admin/addProduct.html.twig', [
+        return $this->render('admin/add/addProduct.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -86,7 +79,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_add_category');
         }
 
-        return $this->render('admin/addCategory.html.twig', [
+        return $this->render('admin/add/addCategory.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -108,7 +101,7 @@ class AdminController extends AbstractController
             /** @var UploadedFile $photo */
             $photo = $category->getPhoto();
 
-            $fileName = $this->slugify($category->getName()) . '.' . $photo->guessExtension();
+            $fileName = $this->slugify($category->getName()) . '-' . $this->generateUniqueFileName() . '.' . $photo->guessExtension();
             $photo->move($this->getParameter('category_assets_dir'), $fileName);
 
             $category->setPhoto($fileName);
@@ -122,9 +115,17 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_add_subcategory');
         }
 
-        return $this->render('admin/addSubCategory.html.twig', [
+        return $this->render('admin/add/addSubCategory.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName(): string
+    {
+        $generateUniqueId = md5(uniqid());
+        return substr($generateUniqueId, 0, 10);
+    }
 }
