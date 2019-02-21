@@ -24,7 +24,40 @@
 
     <div class="container">
         <h1 class="title-h1">Inscription</h1>
-        {{ form(formRegister) }}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.username) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_row(form.adress) }}
+            </div>
+            <div class="col-sm-2">
+                {{ form_row(form.postal_code) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_row(form.city) }}
+            </div>
+            <div class="col-sm-2">
+                {{ form_row(form.phone) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(form.mail) }}
+            </div>
+            <div class="col-sm-6">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" id="mdp" class="form-control">
+            </div>
+        </div>
+        {{ form_end(form) }}
     </div>
 
 {% endblock %}
