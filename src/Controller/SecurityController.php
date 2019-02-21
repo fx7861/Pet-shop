@@ -38,6 +38,8 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash('notice', 'Félicitation, vous pouvez vous connecter !');
+
             return $this->redirectToRoute('page_login');
         }
 

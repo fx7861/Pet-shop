@@ -52,6 +52,7 @@ class PageController extends AbstractController
                         ->getRepository(SubCategory::class)
                         ->findOneBy(['slug' => $slug, 'category' => $cat]);
 
+
         $products = $subCategory->getProducts();
 
         return $this->render('page/sub_category.html.twig', [

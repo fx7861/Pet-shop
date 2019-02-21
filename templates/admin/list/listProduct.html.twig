@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="wrapper">
+    <section class="wrapper">
         {% include 'admin/dashboard/components/_navbar.admin.html.twig' %}
-        <section class="main-panel" id="main-panel">
+        <div class="main-panel" id="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent bg-primary header-pet">
                 <div class="navbar-toggle">
@@ -22,36 +22,49 @@
                 </div>
             </nav>
             <!-- End Navbar -->
+            {% for message in app.flashes('add') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <section>
                 <div class="container-fluid">
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Photo</th>
-                            <th scope="col">Prix</th>
-                            <th scope="col">Sous-categorie</th>
-                            <th scope="col">Marque</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Composition</th>
-                            <th scope="col">Dimension</th>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Prix</th>
+                            <th>Sous-categorie</th>
+                            <th>Marque</th>
+                            <th>Color</th>
+                            <th>Composition</th>
+                            <th>Dimension</th>
+                            <th class="text-center">Editer</th>
+                            <th class="text-center">Supprimer</th>
                         </tr>
                         </thead>
                         <tbody>
                             {% for p in products %}
                                 <tr>
-                                    <td scope="col">{{ p.id }}</td>
-                                    <td scope="col">{{ p.title }}</td>
-                                    <td scope="col">{{ p.description }}</td>
-                                    <td scope="col">{{ p.photo }}</td>
-                                    <td scope="col">{{ p.price }}</td>
-                                    <td scope="col">{{ p.subCategory.name }}</td>
-                                    <td scope="col">{{ p.marque }}</td>
-                                    <td scope="col">{{ p.color }}</td>
-                                    <td scope="col">{{ p.composition }}</td>
-                                    <td scope="col">{{ p.dimension }}</td>
+                                    <td>{{ p.id }}</td>
+                                    <td>{{ p.title }}</td>
+                                    <td>{{ p.description | summaryAdmin }}</td>
+                                    <td>{{ p.photo }}</td>
+                                    <td>{{ p.price }}</td>
+                                    <td>{{ p.subCategory.name }}</td>
+                                    <td>{{ p.marque }}</td>
+                                    <td>{{ p.color }}</td>
+                                    <td>{{ p.composition }}</td>
+                                    <td>{{ p.dimension }}</td>
+                                    <td class="text-center edit-pet"><a href="{{ path('admin_edit_product', {
+                                            'id': p.id
+                                        }) }}"><i class="fas fa-pencil-alt"></i></a></td>
+                                    <td class="text-center sup-pet"><a href="{{ path('admin_delete_product', {
+                                            'id': p.id
+                                        }) }}"><i class="far fa-trash-alt"></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -35,7 +35,7 @@ class ProductType extends AbstractType
                 ]
             ])
             ->add('photo', FileType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Photo',
                 'attr' => [
                     'class' => 'dropify'

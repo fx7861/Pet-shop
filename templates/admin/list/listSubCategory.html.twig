@@ -22,6 +22,11 @@
                 </div>
             </nav>
             <!-- End Navbar -->
+            {% for message in app.flashes('add') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <section>
                 <div class="container">
                     <table class="table">
@@ -31,6 +36,8 @@
                             <th scope="col">Nom</th>
                             <th scope="col">Photo</th>
                             <th scope="col">Categorie</th>
+                            <th class="text-center">Editer</th>
+                            <th class="text-center">Supprimer</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +47,12 @@
                                     <td scope="col">{{ s.name }}</td>
                                     <td scope="col">{{ s.photo }}</td>
                                     <td scope="col">{{ s.category.name }}</td>
+                                    <td class="text-center edit-pet"><a href="{{ path('admin_edit_subcategory', {
+                                            'id': s.id
+                                        }) }}"><i class="fas fa-pencil-alt"></i></a></td>
+                                    <td class="text-center sup-pet"><a href="{{ path('admin_delete_subcategory', {
+                                            'id': s.id
+                                        }) }}"><i class="far fa-trash-alt"></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -34,3 +34,11 @@ input, select {
 .btn-toggler-dashboad i {
     font-size: 2em;
 }
+
+.edit-pet a {
+    color: #1b6d85;
+}
+
+.sup-pet a {
+    color: red;
+}

@@ -8,17 +8,18 @@
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
-                            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-                                <li><a href="{{ path('page_register') }}"><i class="fa fa-user"></i> S'inscrire</a></li>
-                                <li><a href="{{ path('page_login') }}"><i class="fa fa-lock"></i> Login</a></li>
-                            {% endif %}
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a href="{{ path('page_deconnexion') }}"><i class="fas fa-times-circle"></i> Déconnexion</a></li>
-                            {% endif %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li><a href="{{ path('admin_dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                             {% endif %}
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li><a href="#"><i class="fa fa-user"></i> Mon compte</a></li>
+                                <li><a href="{{ path('page_deconnexion') }}"><i class="fas fa-times-circle"></i> Déconnexion</a></li>
+                            {% else %}
+                                <li><a href="{{ path('page_register') }}"><i class="fa fa-user"></i> S'inscrire</a></li>
+                                <li><a href="{{ path('page_login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            {% endif %}
+
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Panier</a></li>
                         </ul>
                     </div>
                 </div>

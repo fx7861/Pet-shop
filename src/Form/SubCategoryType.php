@@ -27,7 +27,7 @@ class SubCategoryType extends AbstractType
                 'choice_label' => 'name'
             ])
             ->add('photo', FileType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Photo',
                 'attr' => [
                     'class' => 'dropify'

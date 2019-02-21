@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block content %}
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h3 class="text-right">
+            Salut {{ app.user.name }}
+        </h3>
+    {% endif %}
 {% endblock %}
