@@ -1,7 +1,13 @@
 security:
+    encoders:
+        App\Entity\User: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,7 +20,15 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login:
+                login_path: page_login
+                check_path: page_login
+                username_parameter: app_login[mail]
+                password_parameter: app_login[password]
+            provider: user_provider
+            logout:
+                path: page_deconnexion
+                target: /
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
@@ -22,3 +36,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_AUTEUR: ROLE_MEMBRE
+        ROLE_ADMIN: ROLE_AUTEUR

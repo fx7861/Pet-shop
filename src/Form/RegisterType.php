@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -47,11 +48,15 @@ class RegisterType extends AbstractType
                     'placeholder' => 'Ville'
                 ]])
             ->add('phone', TelType::class, [
+                'required' => false,
                 'label' => 'Telephone',
                 'attr' => [
                     'onkeypress' => 'return verif(event)',
                     'placeholder' => 'Numéro de téléphone'
                 ]])
+            ->add('password', PasswordType::class, [
+                'label' => 'Mot de passe'
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => "S'inscrire",
                 'attr' => [

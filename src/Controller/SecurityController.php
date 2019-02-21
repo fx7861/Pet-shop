@@ -64,4 +64,9 @@ class SecurityController extends AbstractController
             'error' => $error
         ]);
     }
+
+    /**
+     * @Route("/deconnexion.html", name="page_deconnexion")
+     */
+    public function deconnexion() {}
 }

@@ -18,7 +18,7 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class,[
+            ->add('mail', EmailType::class,[
                 'attr' =>['placeholder' => 'Email.']
             ])
             ->add('password',PasswordType::class,[
@@ -34,5 +34,10 @@ class LoginType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', null);
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'app_login';
     }
 }
