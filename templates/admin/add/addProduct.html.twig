@@ -47,6 +47,11 @@
                 </div>
             </nav>
             <!-- End Navbar -->
+            {% for message in app.flashes('add') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <section>
                 <div class="container">
                     {{ form_start(form) }}

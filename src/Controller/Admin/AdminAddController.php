@@ -48,6 +48,8 @@ class AdminAddController extends AbstractController
             $em->persist($product);
             $em->flush();
 
+            $this->addFlash('add', 'Produit ajouté avec succès');
+
             return $this->redirectToRoute('admin_add_product');
         }
 
@@ -75,6 +77,8 @@ class AdminAddController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+
+            $this->addFlash('add', 'Catégorie ajouté avec succès');
 
             return $this->redirectToRoute('admin_add_category');
         }
@@ -111,6 +115,8 @@ class AdminAddController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+
+            $this->addFlash('add', 'Sous-catégorie ajouté avec succès');
 
             return $this->redirectToRoute('admin_add_subcategory');
         }
