@@ -26,7 +26,7 @@ class PageController extends AbstractController
     {
         $categories = $repository->findAll();
 
-        return $this->render('components/_navbar.html.twig', [
+        return $this->render('components/_nav.html.twig', [
             'categories' => $categories
         ]);
     }
