@@ -7,6 +7,7 @@
 {% block content %}
     <section>
         <div class="container">
+
             <div class="row">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
@@ -19,18 +20,27 @@
                             <h2>{{ product.title }}</h2>
                             <p>Rèf: xxx-id</p>
                             <span>
-                                <span>{{ product.price }} €</span>
-                                <label>Quantity:</label>
-                                <input type="text" value="3" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Ajouter au panier
-                                </button>
+                                <div class="format-price">
+                                    <span>{{ product.price }} €</span>
+                                    <form action="{{ path('add_panier', {'id': product.id}) }}" method="get">
+                                        <label for="qte">Quantité:</label>
+                                        <select name="qte" id="qte">
+                                            {% for i in 1..10 %}
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="hidden" name="redirect" value="{{ app.request.server.get('REQUEST_URI') }}">
+                                        <button type="submit" class="btn btn-fefault cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Ajouter au panier
+                                        </button>
+                                    </form>
+                                </div>
+
                             </span>
                             <p><b>Description:</b></p>
-                                {{ product.description | raw }}
-                                <br><a href="#details">Voir la description complète</a>
-                            <a href=""><img src="{{ asset('images/photo/') }}" class="share img-responsive"  alt="" /></a>
+                            <p>{{ product.description | summary | raw }}</p>
+                            <a href="#details">Voir la description complète</a>
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
