@@ -22,8 +22,11 @@ class ProductController extends AbstractController
     {
         $product = $repository->find($id);
 
+        $suggestions = $repository->findProductSuggestions($product->getSubCategory()->getId());
+
         return $this->render('page/product.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'suggestions' => $suggestions
         ]);
     }
 }
