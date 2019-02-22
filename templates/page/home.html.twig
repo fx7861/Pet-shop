@@ -1,13 +1,127 @@
 {%  extends 'layout.html.twig' %}
 
 {% block title %}
-
+    Acceuil
 {% endblock %}
 
 {% block content %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <h3 class="text-right">
-            Salut {{ app.user.name }}
-        </h3>
-    {% endif %}
+    <section>
+        <div class="container">
+            <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#slider-carousel" data-slide-to="1"></li>
+                    <li data-target="#slider-carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="{{ path('page_subcategory', {
+                            'category': 'rongeur',
+                            'slug': 'alimentation'
+                        }) }}">
+                            <img src="{{ asset('images/carousel/carousel_1.jpg') }}" class="girl img-responsive"/>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ path('page_subcategory', {
+                            'category': 'oiseaux',
+                            'slug': 'accessoires'
+                        }) }}">
+                            <img src="{{ asset('images/carousel/carousel_2.jpg') }}" class="girl img-responsive" alt="" />
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{ path('page_subcategory', {
+                            'category': 'chien',
+                            'slug': 'alimentation'
+                        }) }}">
+                            <img src="{{ asset('images/carousel/carousel_3.png') }}" class="girl img-responsive" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+            <h2 class="title-h1">Produits les plus récents</h2>
+            <div>
+                {% if products is not empty %}
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <a href="{{ path('page_product', {
+                                                'category': product.subCategory.category.slug,
+                                                'subCategory': product.subCategory.slug,
+                                                'slug': product.slug,
+                                                'id': product.id
+                                            }) }}">
+                                                <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="" />
+                                                <h4>{{ product.title }}</h4>
+                                            </a>
+                                            <h2>{{ product.price }} €</h2>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        Aucun produit trouvé.
+                    </div>
+                {% endif %}
+            </div>
+            <h2 class="title-h1">Description de votre site Pet Shop</h2>
+            <div class="row">
+                <div class="col-sm-7 text-welcome text-justify">
+                    <p>
+                        Depuis 2019, <strong>Pet Shop</strong> propose le meilleur à nos amis les bêtes sur <strong>Internet</strong> avec son animalerie
+                    <p>
+                        en ligne :
+                    </p>
+                    </p>
+                    <ul>
+                        <li>
+                            - Une <strong>nourriture pour animaux</strong> élaborée en collaboration avec les <strong>meilleurs experts</strong> vétérinaires, qu’il s’agisse de croquettes pour chien et chat, de pâtée, de graines pour oiseaux ou de granulés pour rongeurs,
+                        </li>
+
+                        <li>
+                            - Des soins et produits d’hygiène répondant aux <strong>normes de qualité</strong> les plus exigeantes, pour <strong>protéger</strong> la santé des animaux, mais aussi de leurs maîtres,
+                        </li>
+
+                        <li>
+                            - Des couchages pour chien et chat <strong>douillets et spacieux</strong>, de splendides aquariums et de vastes terrariums pour offrir un <strong>maximum de confort</strong> à vos compagnons de tous les jours,
+                        </li>
+
+                        <li>
+                            - Des jouets pour animaux pour <strong>tous les budgets</strong> : peluches chat et chien, balles, roues pour hamster, arbres à chat…
+                        </li>
+
+                        <li>
+                            - Ainsi que divers accessoires destinés à <strong>améliorer votre quotidien</strong> et le leur (laisses, gamelles, ou distributeurs de nourriture par exemple).
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Très pratique</strong>, l’animalerie en ligne permet de commander tout le <strong>matériel nécessaire</strong> à l’installation de votre animal depuis chez vous,
+                        et à vous réapprovisionner en nourriture et en produits d’hygiène <strong>très rapidement</strong>.
+                    </p>
+                    <p>
+                        Expertes et passionnées, les équipes de Pet Shop vous accompagnent et vous conseillent pour
+                        vous aider à choisir les <strong>meilleurs produits</strong> pour votre animal de compagnie :
+                        Pet Shop des Animaux à vivre et à aimer.
+                    </p>
+                </div>
+                <div class="col-sm-5 animaux_compagnie">
+                    <img src="{{ asset('images/acceuil/animaux_compagnie_grande.jpg') }}" alt="animaux de compagnie">
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

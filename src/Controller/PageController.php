@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,13 @@ class PageController extends AbstractController
      */
     public function home()
     {
-        return $this->render('page/home.html.twig');
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+
+        $products = $repository->findLastArticle();
+
+        return $this->render('page/home.html.twig', [
+            'products' => $products
+        ]);
     }
 
     /**

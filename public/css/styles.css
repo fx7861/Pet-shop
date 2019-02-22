@@ -65,3 +65,11 @@ a:hover {
     margin-right: 10px;
     font-size: 2em;
 }
+
+.text-welcome li {
+    line-height: 2em;
+}
+
+.animaux_compagnie {
+    margin-top: 10em;
+}
