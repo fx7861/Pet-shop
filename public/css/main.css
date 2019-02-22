@@ -1628,8 +1628,6 @@ h2.title {
 }
 
 .cart_delete {
-    display: block;
-    margin-right: -12px;
     overflow: hidden;
 }
 

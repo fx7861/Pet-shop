@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 clearfix">
-                    <img src="{{ asset('images/logo_petshop.jpg') }}" alt="Logo Pet Shop">
+                    <a href="{{ path('page_home') }}"><img src="{{ asset('images/logo_petshop.jpg') }}" alt="Logo Pet Shop"></a>
                 </div>
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
@@ -19,7 +19,7 @@
                                 <li><a href="{{ path('page_login') }}"><i class="fa fa-lock"></i> Login</a></li>
                             {% endif %}
 
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+                            <li><a href="{{ path('page_panier') }}"><i class="fa fa-shopping-cart"></i> Panier</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -41,7 +41,6 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="{{ path('page_home') }}" class="active">Accueil</a></li>
                             {% for categorie in categories %}
                                 <li class="dropdown"><a href="{{ path('page_category', {
                                         'slug': categorie.slug
@@ -57,11 +56,6 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
                     </div>
                 </div>
             </div>

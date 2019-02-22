@@ -22,7 +22,7 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * @return mixed
      */
-    public function findLastArticle()
+    public function findLastProduct()
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC')
@@ -30,6 +30,16 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function findByKeys($keys)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id IN (:keys)')
+            ->setParameter('keys', $keys)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
