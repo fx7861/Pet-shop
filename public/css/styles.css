@@ -52,3 +52,12 @@ a:hover {
     margin-bottom: 30px;
     margin-top: 0px;
 }
+
+.productinfo h2 {
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.productinfo h4 {
+    height: 40px;
+}
