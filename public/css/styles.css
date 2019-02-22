@@ -52,3 +52,16 @@ a:hover {
     margin-bottom: 30px;
     margin-top: 0px;
 }
+
+.footer-widget {
+    margin-bottom: 0;
+}
+
+.footer-bottom-pet {
+    margin-top: 30px;
+}
+
+.footer-bottom-pet i {
+    margin-right: 10px;
+    font-size: 2em;
+}
