@@ -18,7 +18,7 @@ class PageController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Product::class);
 
-        $products = $repository->findLastArticle();
+        $products = $repository->findLastProduct();
 
         return $this->render('page/home.html.twig', [
             'products' => $products
