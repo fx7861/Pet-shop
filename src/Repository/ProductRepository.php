@@ -24,8 +24,8 @@ class ProductRepository extends ServiceEntityRepository
      */
     public function findLastProduct()
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
             ->setMaxResults(4)
             ->getQuery()
             ->getResult()
@@ -37,6 +37,18 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.id IN (:keys)')
             ->setParameter('keys', $keys)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findProductSuggestions($idSubCategory)
+    {
+        return $this->createQueryBuilder('p')
+            ->where("p.subCategory = :subCategory_id")
+            ->setParameter("subCategory_id", $idSubCategory)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult()
         ;

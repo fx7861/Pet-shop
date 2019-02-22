@@ -7,7 +7,6 @@
 {% block content %}
     <section>
         <div class="container">
-
             <div class="row">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
@@ -44,6 +43,70 @@
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
+            </div>
+            <div id="details" class="details">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h4 class="text-center">Description</h4>
+                        <p>{{ product.description | raw }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4 class="text-center">Composition</h4>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Marque</th>
+                                    <td>{{ product.marque | capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Composition</th>
+                                    <td>{{ product.composition | capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimension</th>
+                                    <td>{{ product.dimension | capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Couleur</th>
+                                    <td>{{ product.color | capitalize }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="title-h1">Suggestions</h2>
+            <div>
+                {% if suggestions is not empty %}
+                    <div class="row">
+                        {% for product in suggestions %}
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <a href="{{ path('page_product', {
+                                                'category': product.subCategory.category.slug,
+                                                'subCategory': product.subCategory.slug,
+                                                'slug': product.slug,
+                                                'id': product.id
+                                            }) }}">
+                                                <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="" />
+                                                <h4>{{ product.title }}</h4>
+                                            </a>
+                                            <h2>{{ product.price }} €</h2>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        Pas de suggestions.
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>

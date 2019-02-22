@@ -112,3 +112,25 @@ a:hover {
 .format-price form button, .format-price span {
     margin: 0;
 }
+
+.details {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.details p {
+    padding: 5px;
+    text-align: justify;
+}
+
+.text-padding {
+    padding: 20px;
+}
+
+.text-padding p {
+    text-align: center;
+}
+
+.text-padding td {
+    text-align: right;
+}
