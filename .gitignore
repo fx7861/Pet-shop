@@ -16,6 +16,8 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
-.gitignore
-.idea
+/.gitignore
+/.idea
+/.env
 /vendor/
+
