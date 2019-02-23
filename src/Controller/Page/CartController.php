@@ -53,7 +53,9 @@ class CartController extends AbstractController
 
         if (array_key_exists($id, $panier)) {
             if ($request->get('qte') != null) {
-                $panier[$id] = $request->get('qte');
+                $panier[$id] += $request->get('qte');
+            } else {
+                $panier[$id] += 1;
             }
         } else {
             if ($request->get('qte') != null) {
@@ -75,6 +77,15 @@ class CartController extends AbstractController
      */
     public function deleteCart($id)
     {
+
+        $panier = $this->session->get('panier');
+
+        if (array_key_exists($id, $panier)) {
+            unset($panier[$id]);
+            $this->session->set('panier', $panier);
+        }
+
+        return $this->redirectToRoute('page_panier');
 
     }
 

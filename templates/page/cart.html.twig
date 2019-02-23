@@ -4,10 +4,11 @@
     Panier
 {% endblock %}
 
-{% block content %}
+{% set totalHT = 0 %}
+{% set tva = 0 %}
+{% set totalTTC = 0 %}
 
-    {{ dump(products) }}
-    {{ dump(panier) }}
+{% block content %}
     <section id="cart_items">
         <div class="container">
             <h1 class="title title-h1">Panier</h1>
@@ -18,24 +19,24 @@
                             <tr class="cart_menu">
                                 <td class="image">Item</td>
                                 <td class="description">Libellé</td>
-                                <td class="price">Prix</td>
+                                <td class="price">Prix HT</td>
                                 <td class="quantity">Quantité</td>
-                                <td class="total">Total</td>
+                                <td class="total">Total HT</td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody>
                         {% for product in products %}
+                            {% set price = product.price | HT %}
                             <tr>
                                 <td class="cart_product">
                                     <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="">
                                 </td>
                                 <td class="cart_description">
                                     <h4>{{ product.title }}</h4>
-                                    <p>Web ID: {{ product.id }}</p>
                                 </td>
                                 <td class="cart_price">
-                                    <p>{{ product.price }} €</p>
+                                    <p>{{ price }} €</p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -45,32 +46,38 @@
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">{{ product.price * panier[product.id] }} €</p>
+                                    <p class="cart_total_price">{{ price * panier[product.id] }} €</p>
                                 </td>
                                 <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                    <a class="cart_quantity_delete" href="{{ path('delete_panier', { 'id': product.id }) }}"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
+                            {% set totalHT = totalHT + (price * panier[product.id]) %}
+
                         {% endfor %}
+
+                        {% set tva = totalHT | TVA %}
+                        {% set totalTTC = totalHT + tva %}
+
                         <tr>
                             <td colspan="4">&nbsp;</td>
                             <td colspan="2">
                                 <table class="table table-condensed total-result">
                                     <tr>
                                         <td>Total panier</td>
-                                        <td>$59</td>
+                                        <td>{{ totalHT }} €</td>
                                     </tr>
                                     <tr>
                                         <td>Tva</td>
-                                        <td>$2</td>
+                                        <td>{{ tva }} €</td>
                                     </tr>
                                     <tr class="shipping-cost">
                                         <td>Frais de livraison</td>
-                                        <td>Free</td>
+                                        <td>Gratuit</td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                        <td><span>$61</span></td>
+                                        <td><span>{{ totalTTC }} €</span></td>
                                     </tr>
                                 </table>
                             </td>

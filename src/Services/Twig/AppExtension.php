@@ -31,6 +31,16 @@ class AppExtension extends AbstractExtension
                     $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '...';
                 }
                 return $string;
+            }),
+            new \Twig_Filter('HT', function ($priceTTC) {
+                $priceHT = $priceTTC / 1.2;
+                $priceHT = round($priceHT, 2);
+                return $priceHT;
+            }),
+            new \Twig_Filter('TVA', function ($priceHT) {
+                $tva = $priceHT * 0.2;
+                $tva = round($tva, 2);
+                return $tva;
             })
         ];
     }
