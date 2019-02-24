@@ -1,0 +1,23 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}
+    Mon compte
+{% endblock %}
+
+{% block content %}
+    <section class="mdashboard">
+        <div class="container">
+            <h1 class="title-h1"><span>Tableau de bord</span></h1>
+            <div class="col-sm-3">
+                {% include('member/components/_sidebar.html.twig') %}
+            </div>
+            <div class="col-sm-9">
+                <h3 class="text-center">Bienvenue {{ app.user.username }}</h3>
+                <p class="text-center">
+                    A partir de votre tableau de bord, vous pouvez accéder et modifier vos informations personnelles,
+                    consulter vos commandes, changer votre mot de passe et également supprimer votre compte.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

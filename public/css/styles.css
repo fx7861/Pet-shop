@@ -6,6 +6,9 @@ a:hover {
     color: #3f4e5e;
 }
 
+.red {
+    color: darkred !important;
+}
 
 .title-h1 {
     color: #FE980F;
@@ -157,4 +160,8 @@ a:hover {
 .cart_quantity_button select {
     width: 50px;
     height: 30px;
+}
+
+.mdashboard h3 {
+    margin-bottom: 1em;
 }

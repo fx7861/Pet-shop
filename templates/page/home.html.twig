@@ -7,6 +7,11 @@
 {% block content %}
     <section>
         <div class="container">
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>

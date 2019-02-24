@@ -19,7 +19,7 @@
                                 <li><a href="{{ path('admin_dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                             {% endif %}
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <li><a href="#"><i class="fa fa-user"></i> Mon compte</a></li>
+                                <li><a href="{{ path('membre_dashboard') }}"><i class="fa fa-user"></i> Mon compte</a></li>
                                 <li><a href="{{ path('page_deconnexion') }}"><i class="fas fa-times-circle"></i> Déconnexion</a></li>
                             {% else %}
                                 <li><a href="{{ path('page_register') }}"><i class="fa fa-user"></i> S'inscrire</a></li>

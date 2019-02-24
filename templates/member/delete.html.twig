@@ -1,0 +1,23 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <h1 class="title-h1"><span>Profil</span></h1>
+            <div class="col-sm-3">
+                {% include('member/components/_sidebar.html.twig') %}
+            </div>
+            <div class="col-sm-9">
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
