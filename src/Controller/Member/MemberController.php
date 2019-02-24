@@ -2,11 +2,14 @@
 
 namespace App\Controller\Member;
 
+use App\Controller\Page\ProductController;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,6 +22,22 @@ class MemberController extends AbstractController
     public function dashboard()
     {
         return $this->render('member/dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/membre/commande.html", name="membre_commande")
+     * @param ProductRepository $repository
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function commande(ProductRepository $repository, SessionInterface $session)
+    {
+        $products = $repository->findByKeys(array_keys($session->get('panier')));
+
+        return $this->render('member/commande.html.twig', [
+            'products' => $products,
+            'panier' => $session->get('panier')
+        ]);
     }
 
     /**

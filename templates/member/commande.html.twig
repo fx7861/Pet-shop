@@ -1,7 +1,7 @@
 {%  extends 'layout.html.twig' %}
 
 {% block title %}
-    Panier
+    Commande
 {% endblock %}
 
 {% set totalHT = 0 %}
@@ -11,19 +11,39 @@
 {% block content %}
     <section id="cart_items">
         <div class="container">
-            <h1 class="title-h1"><span>Panier</span></h1>
+            <h1 class="title-h1"><span>Livraison</span></h1>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="adresse-pet">
+                        <h4><i class="fas fa-truck-loading"></i> Votre adresse de livraison:</h4>
+                        <p>{{ app.user.name }} {{ app.user.username }}</p>
+                        <p>{{ app.user.adress }}</p>
+                        <p>{{ app.user.postal }} {{ app.user.city }}</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="adresse-pet">
+                        <h4><i class="far fa-envelope"></i> Votre adresse de facturation:</h4>
+                        <p>{{ app.user.name }} {{ app.user.username }}</p>
+                        <p>{{ app.user.adress }}</p>
+                        <p>{{ app.user.postal }} {{ app.user.city }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="title-h1"><span>Récapitulatif de la commande</span></h2>
             {% if products is not empty and products is defined %}
                 <div class="table-responsive cart_info">
                     <table class="table table-condensed">
                         <thead>
-                            <tr class="cart_menu">
-                                <td class="image">Item</td>
-                                <td class="description">Libellé</td>
-                                <td class="price">Prix HT</td>
-                                <td class="quantity">Quantité</td>
-                                <td class="total">Total HT</td>
-                                <td></td>
-                            </tr>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description">Libellé</td>
+                            <td class="price">Prix HT</td>
+                            <td class="quantity">Quantité</td>
+                            <td class="total">Total HT</td>
+                            <td></td>
+                        </tr>
                         </thead>
                         <tbody>
                         {% for product in products %}
@@ -40,13 +60,7 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <form action="{{ path('update_panier', {'id': product.id}) }}" method="get">
-                                            <select name="qte" id="qte" class="form-control" onchange="this.form.submit()">
-                                                {% for i in 1..10 %}
-                                                    <option value="{{ i }}" {% if i == panier[product.id] %} selected {% endif %}>{{ i }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </form>
+                                        <p>{{ panier[product.id] }}</p>
                                     </div>
                                 </td>
                                 <td class="cart_total">
@@ -90,7 +104,7 @@
                     </table>
                 </div>
                 <div class="text-right">
-                    <a href="{{ path('membre_commande') }}" class="btn-form-carre">Valider la commande</a>
+                    <a href="{{ path('membre_commande') }}" class="btn-form-carre">Payer</a>
                 </div>
 
             {% else %}
@@ -101,5 +115,4 @@
 
         </div>
     </section>
-
 {% endblock %}

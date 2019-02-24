@@ -37,7 +37,7 @@ class RegisterType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Adresse'
                 ]])
-            ->add('postal_code', TextType::class, [
+            ->add('postal', TextType::class, [
                 'label' => 'Code Postal',
                 'attr' => [
                     'placeholder' => 'Code Postal'
