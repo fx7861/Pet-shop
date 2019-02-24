@@ -25,6 +25,8 @@ class CartController extends AbstractController
 
     /**
      * @Route("/panier.html", name="page_panier")
+     * @param ProductRepository $repository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function cart(ProductRepository $repository)
     {
@@ -42,6 +44,9 @@ class CartController extends AbstractController
 
     /**
      * @Route("/panier/add/{id<\d+>}", name="add_panier")
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addCart($id, Request $request)
     {
@@ -73,7 +78,27 @@ class CartController extends AbstractController
     }
 
     /**
+     * @Route("/panier/update/{id<\d+>}", name="update_panier")
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateCart($id, Request $request)
+    {
+        $panier = $this->session->get('panier');
+
+        if ($request->get('qte') != null) {
+            $panier[$id] = $request->get('qte');
+            $this->session->set('panier', $panier);
+        }
+
+        return $this->redirectToRoute('page_panier');
+    }
+
+    /**
      * @Route("/panier/delete/{id<\d+>}", name="delete_panier")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteCart($id)
     {

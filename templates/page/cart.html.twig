@@ -11,8 +11,8 @@
 {% block content %}
     <section id="cart_items">
         <div class="container">
-            <h1 class="title title-h1">Panier</h1>
-            {% if products is not empty %}
+            <h1 class="title title-h1"><span>Panier</span></h1>
+            {% if products is not empty and products is defined %}
                 <div class="table-responsive cart_info">
                     <table class="table table-condensed">
                         <thead>
@@ -40,9 +40,13 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="{{ panier[product.id] }}" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
+                                        <form action="{{ path('update_panier', {'id': product.id}) }}" method="get">
+                                            <select name="qte" id="qte" class="form-control" onchange="this.form.submit()">
+                                                {% for i in 1..10 %}
+                                                    <option value="{{ i }}" {% if i == panier[product.id] %} selected {% endif %}>{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </form>
                                     </div>
                                 </td>
                                 <td class="cart_total">

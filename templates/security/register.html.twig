@@ -21,42 +21,50 @@
 
 
 {% block content %}
+    <section>
+        <div class="container">
+            <h1 class="title-h1"><span>Inscription</span></h1>
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.username) }}
+                </div>
+            </div>
 
-    <div class="container">
-        <h1 class="title-h1">Inscription</h1>
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col-sm-6">
-                {{ form_row(form.name) }}
+            <div class="row">
+                <div class="col-sm-5">
+                    {{ form_row(form.adress) }}
+                </div>
+                <div class="col-sm-2">
+                    {{ form_row(form.postal_code) }}
+                </div>
+                <div class="col-sm-3">
+                    {{ form_row(form.city) }}
+                </div>
+                <div class="col-sm-2">
+                    {{ form_row(form.phone) }}
+                </div>
             </div>
-            <div class="col-sm-6">
-                {{ form_row(form.username) }}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_row(form.mail) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.password) }}
+                </div>
             </div>
-        </div>
+            {{ form_end(form) }}
 
-        <div class="row">
-            <div class="col-sm-5">
-                {{ form_row(form.adress) }}
+            <div class="new-register">
+                <h3 class="title-h1"><span>Déja client ?</span></h3>
+                <a href="{{ path('page_login') }}" class="btn btn-default">Identifiez-vous</a>
             </div>
-            <div class="col-sm-2">
-                {{ form_row(form.postal_code) }}
-            </div>
-            <div class="col-sm-3">
-                {{ form_row(form.city) }}
-            </div>
-            <div class="col-sm-2">
-                {{ form_row(form.phone) }}
-            </div>
+
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                {{ form_row(form.mail) }}
-            </div>
-            <div class="col-sm-6">
-                {{ form_row(form.password) }}
-            </div>
-        </div>
-        {{ form_end(form) }}
-    </div>
+    </section>
+
 
 {% endblock %}

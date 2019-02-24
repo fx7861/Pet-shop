@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/{category<[a-zA-Z0-9\-_\/]+>}/{slug<[a-zA-Z0-9\-_\/]+>}", name="page_subcategory")
+     * @Route("/{category<[a-zA-Z0-9\-\/]+>}/{slug<[a-zA-Z0-9\-\/]+>}", name="page_subcategory")
      * @param $category
      * @param $slug
      * @return Response
@@ -37,7 +37,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{slug<[a-zA-Z0-9\-_\/]+>}", name="page_category")
+     * @Route("/{slug<[a-zA-Z0-9\-\/]+>}", name="page_category")
      * @param $slug
      * @return Response
      */

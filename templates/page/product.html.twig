@@ -17,13 +17,13 @@
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <h2>{{ product.title }}</h2>
-                            <p>Rèf: xxx-id</p>
+                            <p>Réf: {{ product.subCategory.category.name | ref }}-{{ product.id }}</p>
                             <span>
                                 <div class="format-price">
                                     <span>{{ product.price }} €</span>
                                     <form action="{{ path('add_panier', {'id': product.id}) }}" method="get">
                                         <label for="qte">Quantité:</label>
-                                        <select name="qte" id="qte">
+                                        <select name="qte" id="qte" class="form-control">
                                             {% for i in 1..10 %}
                                                 <option value="{{ i }}">{{ i }}</option>
                                             {% endfor %}

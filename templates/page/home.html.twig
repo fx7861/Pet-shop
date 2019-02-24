@@ -46,9 +46,9 @@
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
-            <h2 class="title-h1">Produits les plus récents</h2>
+            <h2 class="title-h1"><span>Produits les plus récents</span></h2>
             <div>
-                {% if products is not empty %}
+                {% if products is not empty and products is defined %}
                     <div class="row">
                         {% for product in products %}
                             <div class="col-sm-3">
@@ -78,7 +78,7 @@
                     </div>
                 {% endif %}
             </div>
-            <h2 class="title-h1">Description de votre site Pet Shop</h2>
+            <h2 class="title-h1"><span>Description de votre site Pet Shop</span></h2>
             <div class="row">
                 <div class="col-sm-7 text-welcome text-justify">
                     <p>

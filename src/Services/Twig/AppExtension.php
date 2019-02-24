@@ -32,6 +32,13 @@ class AppExtension extends AbstractExtension
                 }
                 return $string;
             }),
+            new \Twig_Filter('ref', function ($text) {
+                $string = strip_tags($text);
+                if (strlen($string) > 3) {
+                    $string = substr($string, 0, 3);
+                }
+                return strtoupper($string);
+            }),
             new \Twig_Filter('HT', function ($priceTTC) {
                 $priceHT = $priceTTC / 1.2;
                 $priceHT = round($priceHT, 2);
