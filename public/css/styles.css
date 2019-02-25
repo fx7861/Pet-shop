@@ -185,3 +185,15 @@ a:hover {
     align-items: center;
     margin-bottom: 65px;
 }
+
+.facicon {
+    color: #1e4d9d;
+}
+
+.twiticon {
+    color: #1da1f2;
+}
+
+.snapicon {
+    color: #fffc01;
+}
