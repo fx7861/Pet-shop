@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ brand | capitalize }}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <h1 class="title title-h1"><span>{{ brand | capitalize }}</span></h1>
+            {% if products is not empty and products is defined %}
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="{{ path('page_product', {
+                                            'category': product.subCategory.category.slug,
+                                            'subCategory': product.subCategory.slug,
+                                            'slug': product.slug,
+                                            'id': product.id
+                                        }) }}">
+                                            <img src="{{ asset('images/photo/' ~ product.photo) }}" alt="" />
+                                            <h4>{{ product.title }}</h4>
+                                        </a>
+                                        <h2>{{ product.price }} €</h2>
+                                        <form action="{{ path('add_panier', {'id': product.id}) }}" method="get">
+                                            <input type="hidden" name="redirect" value="{{ app.request.server.get('REQUEST_URI') }}">
+                                            <button type="submit" class="btn btn-fefault add-to-cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Ajouter au panier
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    Aucun produit trouvé.
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

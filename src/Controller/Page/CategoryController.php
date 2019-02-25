@@ -4,6 +4,7 @@ namespace App\Controller\Page;
 
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Entity\SubCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
