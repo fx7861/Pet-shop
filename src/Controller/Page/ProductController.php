@@ -29,4 +29,22 @@ class ProductController extends AbstractController
             'suggestions' => $suggestions
         ]);
     }
+
+    /**
+     * @Route("/marque/{slug<[a-zA-Z0-9\-]+>}.html", name="page_brand")
+     * @param $slug
+     * @return Response
+     */
+    public function brandCategory($slug)
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findByBrand($slug);
+
+        return $this->render('page/marque.html.twig', [
+            'brand' => $slug,
+            'products' => $products
+        ]);
+    }
+
 }

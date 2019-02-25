@@ -26,7 +26,7 @@ class ProductRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.id', 'DESC')
-            ->setMaxResults(4)
+            ->setMaxResults(8)
             ->getQuery()
             ->getResult()
             ;
@@ -52,6 +52,16 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findByBrand($brand)
+    {
+        return $this->createQueryBuilder('p')
+            ->where("p.marque = :brand")
+            ->setParameter("brand", $brand)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
