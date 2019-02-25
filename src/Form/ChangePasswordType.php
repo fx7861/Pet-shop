@@ -4,12 +4,13 @@ namespace App\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PasswordType extends AbstractType
+class ChangePasswordType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,9 +20,9 @@ class PasswordType extends AbstractType
     {
         $builder
             ->add('oldPassword', PasswordType::class, [
-                'mapped' => false
+                'label' => 'Ancien mot de passe'
             ])
-            ->add('newPassword', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent être identiques',
                 'options' => [
@@ -29,6 +30,8 @@ class PasswordType extends AbstractType
                         'class' => 'password-field'
                     ]
                 ],
+                'first_options'  => ['label' => 'Nouveau mot de passe'],
+                'second_options' => ['label' => 'Confirmer mot de passe'],
                 'required' => true,
             ])
             ->add('submit',SubmitType::class,[

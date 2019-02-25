@@ -2,7 +2,7 @@
 
 namespace App\Controller\Member;
 
-
+use App\Form\ChangePasswordType;
 use App\Form\PasswordType;
 use App\Form\UserType;
 use App\Repository\ProductRepository;
@@ -11,7 +11,8 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MemberController extends AbstractController
 {
@@ -69,9 +70,11 @@ class MemberController extends AbstractController
 
     /**
      * @Route("/membre/delete.html", name="membre_delete")
+     * @param SessionInterface $session
+     * @param TokenStorageInterface $tokenStorage
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete()
+    public function delete(SessionInterface $session, TokenStorageInterface $tokenStorage)
     {
         $user = $this->getUser();
 
@@ -79,33 +82,35 @@ class MemberController extends AbstractController
         $em->remove($user);
         $em->flush();
 
+        $tokenStorage->setToken(null);
+        $session->invalidate();
+
         $this->addFlash('notice', 'Votre compte à été supprimé avec succès');
 
-        return $this->redirectToRoute('page_login');
+        return $this->redirectToRoute('page_home');
     }
-
 
 
     /**
      * @Route("/membre/password.html", name="membre_password")
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function changePassword(Request $request)
+    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(PasswordType::class, $user);
-
-        $form->handleRequest($request);
+        $form = $this->createForm(ChangePasswordType::class)
+            ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $passwordEncoder = $this->get('security.password_encoder');
-            $oldPassword = $request->get('reset_password')['oldPassword'];
+            $data = $form->getData();
+            $oldPassword = $data['oldPassword'];
 
-            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            if ($encoder->isPasswordValid($user, $oldPassword)) {
+                $newEncodedPassword = $encoder->encodePassword($user, $data['plainPassword']);
                 $user->setPassword($newEncodedPassword);
 
                 $em = $this->getDoctrine()->getManager();

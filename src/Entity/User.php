@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,54 +20,56 @@ class User
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\Length(min=2)
+     * @Assert\NotBlank(message="Veuillez entrer votre nom")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\Length(min=2)
+     * @Assert\NotBlank(message="Veuillez entrer votre prénom")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * Assert\Length(
-     *      min=10,
+     * @Assert\NotBlank(message="Veuillez entrer votre email")
+     * @Assert\Length(
      *      max=50,
-     *      minMessage="Veuillez entrer un e-mail valide",
      *      maxMessage="Veuillez entrer un e-mail valide")
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez entrer votre adresse")
      * @Assert\Length(
-     *     min=10,
      *     max=255,
-     *     minMessage="Veuillez entrer une adresse valide",
      *     maxMessage="Veuillez entrer une adresse valide")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez entrer votre nom")
      */
     private $postal;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Veuillez entrer votre ville")
+     * @Assert\Length(
+     *     max=50,
+     *     maxMessage="Veuillez entrer une ville valide")
      */
     private $city;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Length(
-     *     min=10,
-     *     max=10,
+     *     min=9,
      *     minMessage="Veuillez entrer un numero valide",
-     *     maxMessage="Veuillez entrer un numero valide"
-     * )
+     *     max=10,
+     *     maxMessage="Veuillez entrer un numero valide")
      *
      */
     private $phone;
@@ -212,8 +215,31 @@ class User
     /**
      * @param string $plainPassword
      */
-    public function setPlainPassword(?string $plainPassword): void
+    public function setPlainPassword(string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        return null;
     }
 }
