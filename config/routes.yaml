@@ -19,3 +19,9 @@ retour:
   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
   defaults:
     template: static/retour.html.twig
+
+livraison:
+  path: /livraison.html
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+  defaults:
+    template: static/livraison.html.twig

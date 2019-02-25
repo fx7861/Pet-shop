@@ -2,16 +2,16 @@
 
 namespace App\Controller\Member;
 
-use App\Controller\Page\ProductController;
-use App\Entity\User;
+
+use App\Form\PasswordType;
 use App\Form\UserType;
 use App\Repository\ProductRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 class MemberController extends AbstractController
 {
@@ -42,12 +42,13 @@ class MemberController extends AbstractController
 
     /**
      * @Route("/membre/profil.html", name="membre_profil")
-     * @param UserInterface $user
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profil(UserInterface $user, Request $request)
+    public function profil(Request $request)
     {
+        $user = $this->getUser();
+
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
@@ -67,13 +68,13 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/membre/delete", name="membre_delete")
-     * @param UserInterface $user
-     * @param UserRepository $repository
+     * @Route("/membre/delete.html", name="membre_delete")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete(UserInterface $user)
+    public function delete()
     {
+        $user = $this->getUser();
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
@@ -86,13 +87,13 @@ class MemberController extends AbstractController
 
 
     /**
-     * @Route("/membre/password", name="membre_password")
-     * @param UserInterface $user
+     * @Route("/membre/password.html", name="membre_password")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     *
-    public function changePassword(UserInterface $user, Request $request)
+     */
+    public function changePassword(Request $request)
     {
+        $user = $this->getUser();
 
         $form = $this->createForm(PasswordType::class, $user);
 
@@ -100,18 +101,27 @@ class MemberController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $passwordEncoder = $this->get('security.password_encoder');
+            $oldPassword = $request->get('reset_password')['oldPassword'];
 
+            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($newEncodedPassword);
 
-            //$em = $this->getDoctrine()->getManager();
-            //$em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
 
-            $this->addFlash('notice', 'Mot de passe mis à jour');
+                $this->addFlash('notice', 'Mot de passe mis à jour');
 
+                return $this->redirectToRoute('membre_dashboard');
+            } else {
+                $form->addError(new FormError('Ancien mot de passe incorrect'));
+            }
         }
 
         return $this->render('member/password.html.twig', [
             'form' => $form->createView()
         ]);
-    }*/
+    }
 
 }

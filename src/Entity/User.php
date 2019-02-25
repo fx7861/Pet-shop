@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User
 {
     /**
      * @ORM\Id()
@@ -82,6 +81,12 @@ class User implements UserInterface
      * @Assert\NotBlank(message="Vous devez saisir un mot de passe.")
      */
     private $password;
+
+    /**
+     * A non-persisted field that's used to create the encoded password.
+     * @var string
+     */
+    private $plainPassword;
 
     public function getId(): ?int
     {
@@ -197,25 +202,18 @@ class User implements UserInterface
     }
 
     /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
+     * @return string
      */
-    public function getSalt()
+    public function getPlainPassword(): ?string
     {
-        // TODO: Implement getSalt() method.
+        return $this->plainPassword;
     }
 
     /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
+     * @param string $plainPassword
      */
-    public function eraseCredentials()
+    public function setPlainPassword(?string $plainPassword): void
     {
-        // TODO: Implement eraseCredentials() method.
+        $this->plainPassword = $plainPassword;
     }
 }

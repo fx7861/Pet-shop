@@ -42,17 +42,7 @@ a:hover {
  right: 0;
 }
 
-.btn-form {
-    background: #FE980F;
-    border: 0 none;
-    border-radius: 8px;
-    color: white;
-    padding: 8px 12px;
-    margin-top: 10px;
-
-}
-
-.btn-form-carre {
+.btn-form-carre, .btn-form {
     background: #FE980F;
     border: 0 none;
     color: white;

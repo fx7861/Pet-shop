@@ -32,7 +32,13 @@
                                                 <h4>{{ product.title }}</h4>
                                             </a>
                                             <h2>{{ product.price }} €</h2>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
+                                            <form action="{{ path('add_panier', {'id': product.id}) }}" method="get">
+                                                <input type="hidden" name="redirect" value="{{ app.request.server.get('REQUEST_URI') }}">
+                                                <button type="submit" class="btn btn-fefault add-to-cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Ajouter au panier
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

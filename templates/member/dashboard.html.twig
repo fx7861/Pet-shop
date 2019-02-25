@@ -12,6 +12,11 @@
                 {% include('member/components/_sidebar.html.twig') %}
             </div>
             <div class="col-sm-9">
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                 <h3 class="text-center">Bienvenue {{ app.user.username }}</h3>
                 <p class="text-center">
                     A partir de votre tableau de bord, vous pouvez accéder et modifier vos informations personnelles,
