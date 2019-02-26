@@ -1,0 +1,88 @@
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+    box-sizing: border-box;
+
+    height: 40px;
+
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.paiement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.paiement a {
+    margin-top: 20px;
+}
+
+.logo-paiement {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 55px;
+    line-height: 55px;
+    background-color: #6772e5;
+    color: white;
+    font-weight: 600;
+    font-size: 2em;
+    font-family: Camphor,Open Sans,Segoe UI,sans-serif;
+    -webkit-border-radius: 30px 30px 0 0;
+    -moz-border-radius: 30px 30px 0 0;
+    border-radius: 30px 30px 0 0;
+}
+
+.logo-paiement p {
+    margin: 0;
+}
+
+.logo-paiement i {
+    font-size: 0.7em;
+    margin-right: 5px;
+}
+
+#payment-form {
+    width: 400px !important;
+    padding: 10px;
+    border-right: 1px solid #6772e5;
+    border-left: 1px solid #6772e5;
+    border-bottom: 1px solid #6772e5;
+    border-radius: 0 0 30px 30px;
+}
+
+.payment-label {
+    margin-bottom: 1.2em;
+    margin-top: 1em;
+}
+
+.btn-paiement {
+    margin-top: 1em;
+    margin-bottom: 1.2em;
+}

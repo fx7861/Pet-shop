@@ -2,9 +2,10 @@
 
 namespace App\Controller\Member;
 
+use App\Entity\User;
 use App\Form\ChangePasswordType;
-use App\Form\PasswordType;
 use App\Form\UserType;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -38,6 +39,23 @@ class MemberController extends AbstractController
         return $this->render('member/commande.html.twig', [
             'products' => $products,
             'panier' => $session->get('panier')
+        ]);
+    }
+
+    /**
+     * @Route("/membre/order.html", name="membre_order")
+     * @param OrderRepository $repository
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function order(OrderRepository $repository)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $orders = $repository->findAllByUser($user);
+
+        return $this->render('member/order.html.twig', [
+            'orders' => $orders
         ]);
     }
 
